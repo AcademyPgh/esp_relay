@@ -29,16 +29,16 @@ light::LightState *light_lightstate_id;
 void setup() {
   // ========== AUTO GENERATED CODE BEGIN ===========
   // esphome:
-  //   name: swaggest
-  //   friendly_name: Swaggest
-  //   min_version: 2025.2.2
-  //   build_path: build/swaggest
+  //   name: prometheus
+  //   friendly_name: Prometheus_Dimmer
+  //   min_version: 2024.12.4
+  //   build_path: build/prometheus
   //   area: ''
   //   platformio_options: {}
   //   includes: []
   //   libraries: []
   //   name_add_mac_suffix: false
-  App.pre_setup("swaggest", "Swaggest", "", "", __DATE__ ", " __TIME__, false);
+  App.pre_setup("prometheus", "Prometheus_Dimmer", "", "", __DATE__ ", " __TIME__, false);
   // switch:
   // light:
   // logger:
@@ -47,11 +47,10 @@ void setup() {
   //   baud_rate: 115200
   //   tx_buffer_size: 512
   //   deassert_rts_dtr: false
-  //   hardware_uart: USB_SERIAL_JTAG
+  //   hardware_uart: UART0
   //   logs: {}
   logger_logger_id = new logger::Logger(115200, 512);
-  logger_logger_id->set_log_level(ESPHOME_LOG_LEVEL_VERBOSE);
-  logger_logger_id->set_uart_selection(logger::UART_SELECTION_USB_SERIAL_JTAG);
+  logger_logger_id->set_uart_selection(logger::UART_SELECTION_UART0);
   logger_logger_id->pre_setup();
   logger_logger_id->set_component_source("logger");
   App.register_component(logger_logger_id);
@@ -68,7 +67,7 @@ void setup() {
   App.register_component(captive_portal_captiveportal_id);
   // wifi:
   //   ap:
-  //     ssid: Swaggest Fallback Hotspot
+  //     ssid: Prometheus Fallback Hotspot
   //     password: OTpu9XNYcBfM
   //     id: wifi_wifiap_id
   //     ap_timeout: 1min
@@ -86,9 +85,9 @@ void setup() {
   //     password: !secret 'wifi_password'
   //     id: wifi_wifiap_id_2
   //     priority: 0.0
-  //   use_address: swaggest.local
+  //   use_address: prometheus.local
   wifi_wificomponent_id = new wifi::WiFiComponent();
-  wifi_wificomponent_id->set_use_address("swaggest.local");
+  wifi_wificomponent_id->set_use_address("prometheus.local");
   {
   wifi::WiFiAP wifi_wifiap_id_2 = wifi::WiFiAP();
   wifi_wifiap_id_2.set_ssid("LFG");
@@ -98,7 +97,7 @@ void setup() {
   }
   {
   wifi::WiFiAP wifi_wifiap_id = wifi::WiFiAP();
-  wifi_wifiap_id.set_ssid("Swaggest Fallback Hotspot");
+  wifi_wifiap_id.set_ssid("Prometheus Fallback Hotspot");
   wifi_wifiap_id.set_password("OTpu9XNYcBfM");
   wifi_wificomponent_id->set_ap(wifi_wifiap_id);
   }
@@ -141,7 +140,7 @@ void setup() {
   if (safe_mode_safemodecomponent_id->should_enter_safe_mode(10, 300000, 60000)) return;
   // api:
   //   encryption:
-  //     key: WCh9duAvxF3hpHWJAMsXhLMEblRwgtY8HCphYSm8GiY=
+  //     key: oGxYbw5wDhQS6RT1fkfvQ2M51c0b4XpBC6V8fKHElWw=
   //   id: api_apiserver_id
   //   port: 6053
   //   password: ''
@@ -152,7 +151,7 @@ void setup() {
   api_apiserver_id->set_port(6053);
   api_apiserver_id->set_password("");
   api_apiserver_id->set_reboot_timeout(900000);
-  api_apiserver_id->set_noise_psk({88, 40, 125, 118, 224, 47, 196, 93, 225, 164, 117, 137, 0, 203, 23, 132, 179, 4, 110, 84, 112, 130, 214, 60, 28, 42, 97, 97, 41, 188, 26, 38});
+  api_apiserver_id->set_noise_psk({160, 108, 88, 111, 14, 112, 14, 20, 18, 233, 20, 245, 126, 71, 239, 67, 99, 57, 213, 205, 27, 225, 122, 65, 11, 165, 124, 124, 161, 196, 149, 108});
   // esp32:
   //   board: esp32-c6-devkitc-1
   //   flash_size: 8MB
