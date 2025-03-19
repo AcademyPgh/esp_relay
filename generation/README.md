@@ -1,0 +1,3 @@
+The `esphome_light_system.yml` file gets used with ESPHome to generate this entire cool directory of code. We're keeping a version of it in this repo to keep track of changes over time.
+
+See [these instructions](https://academypgh-my.sharepoint.com/:w:/r/personal/john_academypgh_com/_layouts/15/Doc.aspx?sourcedoc=%7B6c242876-73fc-4be6-9087-a68824087eeb%7D&action=editnew&wdOrigin=OFFICE-OFFICE-METAOS.FILEBROWSER.FILES-PEOPLEL2-FOLDER) for more info about how to use this file.
