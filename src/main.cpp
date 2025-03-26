@@ -38,7 +38,7 @@ void setup() {
   //   includes: []
   //   libraries: []
   //   name_add_mac_suffix: false
-  App.pre_setup("prometheus", "Prometheus_Dimmer", "", "", __DATE__ ", " __TIME__, false);
+  App.pre_setup("prometheus", "Prometheus_Inverted_Dimmer", "", "", __DATE__ ", " __TIME__, false);
   // switch:
   // light:
   // logger:
@@ -227,7 +227,7 @@ void setup() {
   //   zero_means_zero: false
   esp32_esp32internalgpiopin_id_2 = new esp32::ESP32InternalGPIOPin();
   esp32_esp32internalgpiopin_id_2->set_pin(::GPIO_NUM_5);
-  esp32_esp32internalgpiopin_id_2->set_inverted(false);
+  esp32_esp32internalgpiopin_id_2->set_inverted(true);
   esp32_esp32internalgpiopin_id_2->set_drive_strength(::GPIO_DRIVE_CAP_2);
   esp32_esp32internalgpiopin_id_2->set_flags(gpio::Flags::FLAG_OUTPUT);
   gpio_5 = new ledc::LEDCOutput(esp32_esp32internalgpiopin_id_2);
