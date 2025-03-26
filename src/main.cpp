@@ -38,7 +38,7 @@ void setup() {
   //   includes: []
   //   libraries: []
   //   name_add_mac_suffix: false
-  App.pre_setup("prometheus", "Prometheus_2", "", "", __DATE__ ", " __TIME__, false);
+  App.pre_setup("prometheus", "Prometheus_Inverted_Dimmer", "", "", __DATE__ ", " __TIME__, false);
   // switch:
   // light:
   // logger:
