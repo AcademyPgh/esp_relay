@@ -30,7 +30,7 @@ void setup() {
   // ========== AUTO GENERATED CODE BEGIN ===========
   // esphome:
   //   name: prometheus
-  //   friendly_name: Prometheus_Dimmer
+  //   friendly_name: Prometheus_Inverted_Dimmer
   //   min_version: 2024.12.4
   //   build_path: build/prometheus
   //   area: ''
@@ -140,7 +140,7 @@ void setup() {
   if (safe_mode_safemodecomponent_id->should_enter_safe_mode(10, 300000, 60000)) return;
   // api:
   //   encryption:
-  //     key: oGxYbw5wDhQS6RT1fkfvQ2M51c0b4XpBC6V8fKHElWw=
+  //     key: WCh9duAvxF3hpHWJAMsXhLMEblRwgtY8HCphYSm8GiY=
   //   id: api_apiserver_id
   //   port: 6053
   //   password: ''
@@ -151,7 +151,7 @@ void setup() {
   api_apiserver_id->set_port(6053);
   api_apiserver_id->set_password("");
   api_apiserver_id->set_reboot_timeout(900000);
-  api_apiserver_id->set_noise_psk({160, 108, 88, 111, 14, 112, 14, 20, 18, 233, 20, 245, 126, 71, 239, 67, 99, 57, 213, 205, 27, 225, 122, 65, 11, 165, 124, 124, 161, 196, 149, 108});
+  api_apiserver_id->set_noise_psk({88, 40, 125, 118, 224, 47, 196, 93, 225, 164, 117, 137, 0, 203, 23, 132, 179, 4, 110, 84, 112, 130, 214, 60, 28, 42, 97, 97, 41, 188, 26, 38});
   // esp32:
   //   board: esp32-c6-devkitc-1
   //   flash_size: 8MB
@@ -223,16 +223,18 @@ void setup() {
   //     ignore_strapping_warning: false
   //     drive_strength: 20.0
   //   id: gpio_5
+  //   inverted: true
   //   frequency: 1000.0
   //   zero_means_zero: false
   esp32_esp32internalgpiopin_id_2 = new esp32::ESP32InternalGPIOPin();
   esp32_esp32internalgpiopin_id_2->set_pin(::GPIO_NUM_5);
-  esp32_esp32internalgpiopin_id_2->set_inverted(true);
+  esp32_esp32internalgpiopin_id_2->set_inverted(false);
   esp32_esp32internalgpiopin_id_2->set_drive_strength(::GPIO_DRIVE_CAP_2);
   esp32_esp32internalgpiopin_id_2->set_flags(gpio::Flags::FLAG_OUTPUT);
   gpio_5 = new ledc::LEDCOutput(esp32_esp32internalgpiopin_id_2);
   gpio_5->set_component_source("ledc.output");
   App.register_component(gpio_5);
+  gpio_5->set_inverted(true);
   gpio_5->set_zero_means_zero(false);
   gpio_5->set_frequency(1000.0f);
   // light.monochromatic:
