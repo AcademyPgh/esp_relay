@@ -19,18 +19,24 @@ using namespace api;
 preferences::IntervalSyncer *preferences_intervalsyncer_id;
 gpio::GPIOSwitch *gpio_gpioswitch_id;
 esp32::ESP32InternalGPIOPin *esp32_esp32internalgpiopin_id;
-using namespace output;
+gpio::GPIOSwitch *gpio_gpioswitch_id_2;
 esp32::ESP32InternalGPIOPin *esp32_esp32internalgpiopin_id_2;
+using namespace output;
+esp32::ESP32InternalGPIOPin *esp32_esp32internalgpiopin_id_3;
 ledc::LEDCOutput *gpio_5;
+esp32::ESP32InternalGPIOPin *esp32_esp32internalgpiopin_id_4;
+ledc::LEDCOutput *gpio_23;
 monochromatic::MonochromaticLightOutput *monochromatic_monochromaticlightoutput_id;
 light::LightState *light_lightstate_id;
+monochromatic::MonochromaticLightOutput *monochromatic_monochromaticlightoutput_id_2;
+light::LightState *light_lightstate_id_2;
 // ========== AUTO GENERATED INCLUDE BLOCK END ==========="
 
 void setup() {
   // ========== AUTO GENERATED CODE BEGIN ===========
   // esphome:
   //   name: prometheus
-  //   friendly_name: Prometheus_Inverted_Dimmer
+  //   friendly_name: Prometheus_2switch2dimmer
   //   min_version: 2024.12.4
   //   build_path: build/prometheus
   //   area: ''
@@ -38,7 +44,7 @@ void setup() {
   //   includes: []
   //   libraries: []
   //   name_add_mac_suffix: false
-  App.pre_setup("prometheus", "Prometheus_Inverted_Dimmer", "", "", __DATE__ ", " __TIME__, false);
+  App.pre_setup("prometheus", "Prometheus_2switch2dimmer", "", "", __DATE__ ", " __TIME__, false);
   // switch:
   // light:
   // logger:
@@ -206,11 +212,11 @@ void setup() {
   esp32_esp32internalgpiopin_id->set_drive_strength(::GPIO_DRIVE_CAP_2);
   esp32_esp32internalgpiopin_id->set_flags(gpio::Flags::FLAG_OUTPUT);
   gpio_gpioswitch_id->set_pin(esp32_esp32internalgpiopin_id);
-  // output:
-  // output.ledc:
-  //   platform: ledc
+  // switch.gpio:
+  //   platform: gpio
+  //   name: Switch 2
   //   pin:
-  //     number: 5
+  //     number: 15
   //     mode:
   //       output: true
   //       input: false
@@ -222,25 +228,89 @@ void setup() {
   //     ignore_pin_validation_error: false
   //     ignore_strapping_warning: false
   //     drive_strength: 20.0
+  //   disabled_by_default: false
+  //   restore_mode: ALWAYS_OFF
+  //   id: gpio_gpioswitch_id_2
+  //   interlock_wait_time: 0ms
+  gpio_gpioswitch_id_2 = new gpio::GPIOSwitch();
+  App.register_switch(gpio_gpioswitch_id_2);
+  gpio_gpioswitch_id_2->set_name("Switch 2");
+  gpio_gpioswitch_id_2->set_object_id("switch_2");
+  gpio_gpioswitch_id_2->set_disabled_by_default(false);
+  gpio_gpioswitch_id_2->set_restore_mode(switch_::SWITCH_ALWAYS_OFF);
+  gpio_gpioswitch_id_2->set_component_source("gpio.switch");
+  App.register_component(gpio_gpioswitch_id_2);
+  esp32_esp32internalgpiopin_id_2 = new esp32::ESP32InternalGPIOPin();
+  esp32_esp32internalgpiopin_id_2->set_pin(::GPIO_NUM_15);
+  esp32_esp32internalgpiopin_id_2->set_inverted(false);
+  esp32_esp32internalgpiopin_id_2->set_drive_strength(::GPIO_DRIVE_CAP_2);
+  esp32_esp32internalgpiopin_id_2->set_flags(gpio::Flags::FLAG_OUTPUT);
+  gpio_gpioswitch_id_2->set_pin(esp32_esp32internalgpiopin_id_2);
+  // output:
+  // output.ledc:
+  //   platform: ledc
+  //   pin:
+  //     number: 5
+  //     mode:
+  //       output: true
+  //       input: false
+  //       open_drain: false
+  //       pullup: false
+  //       pulldown: false
+  //     id: esp32_esp32internalgpiopin_id_3
+  //     inverted: false
+  //     ignore_pin_validation_error: false
+  //     ignore_strapping_warning: false
+  //     drive_strength: 20.0
   //   id: gpio_5
   //   inverted: true
   //   frequency: 1000.0
   //   zero_means_zero: false
-  esp32_esp32internalgpiopin_id_2 = new esp32::ESP32InternalGPIOPin();
-  esp32_esp32internalgpiopin_id_2->set_pin(::GPIO_NUM_5);
-  esp32_esp32internalgpiopin_id_2->set_inverted(false);
-  esp32_esp32internalgpiopin_id_2->set_drive_strength(::GPIO_DRIVE_CAP_2);
-  esp32_esp32internalgpiopin_id_2->set_flags(gpio::Flags::FLAG_OUTPUT);
-  gpio_5 = new ledc::LEDCOutput(esp32_esp32internalgpiopin_id_2);
+  esp32_esp32internalgpiopin_id_3 = new esp32::ESP32InternalGPIOPin();
+  esp32_esp32internalgpiopin_id_3->set_pin(::GPIO_NUM_5);
+  esp32_esp32internalgpiopin_id_3->set_inverted(false);
+  esp32_esp32internalgpiopin_id_3->set_drive_strength(::GPIO_DRIVE_CAP_2);
+  esp32_esp32internalgpiopin_id_3->set_flags(gpio::Flags::FLAG_OUTPUT);
+  gpio_5 = new ledc::LEDCOutput(esp32_esp32internalgpiopin_id_3);
   gpio_5->set_component_source("ledc.output");
   App.register_component(gpio_5);
   gpio_5->set_inverted(true);
   gpio_5->set_zero_means_zero(false);
   gpio_5->set_frequency(1000.0f);
+  // output.ledc:
+  //   platform: ledc
+  //   pin:
+  //     number: 23
+  //     mode:
+  //       output: true
+  //       input: false
+  //       open_drain: false
+  //       pullup: false
+  //       pulldown: false
+  //     id: esp32_esp32internalgpiopin_id_4
+  //     inverted: false
+  //     ignore_pin_validation_error: false
+  //     ignore_strapping_warning: false
+  //     drive_strength: 20.0
+  //   id: gpio_23
+  //   inverted: true
+  //   frequency: 1000.0
+  //   zero_means_zero: false
+  esp32_esp32internalgpiopin_id_4 = new esp32::ESP32InternalGPIOPin();
+  esp32_esp32internalgpiopin_id_4->set_pin(::GPIO_NUM_23);
+  esp32_esp32internalgpiopin_id_4->set_inverted(false);
+  esp32_esp32internalgpiopin_id_4->set_drive_strength(::GPIO_DRIVE_CAP_2);
+  esp32_esp32internalgpiopin_id_4->set_flags(gpio::Flags::FLAG_OUTPUT);
+  gpio_23 = new ledc::LEDCOutput(esp32_esp32internalgpiopin_id_4);
+  gpio_23->set_component_source("ledc.output");
+  App.register_component(gpio_23);
+  gpio_23->set_inverted(true);
+  gpio_23->set_zero_means_zero(false);
+  gpio_23->set_frequency(1000.0f);
   // light.monochromatic:
   //   platform: monochromatic
   //   output: gpio_5
-  //   name: ESP32 Dimmer
+  //   name: ESP32 Dimmer1
   //   disabled_by_default: false
   //   id: light_lightstate_id
   //   restore_mode: ALWAYS_OFF
@@ -253,8 +323,8 @@ void setup() {
   App.register_light(light_lightstate_id);
   light_lightstate_id->set_component_source("light");
   App.register_component(light_lightstate_id);
-  light_lightstate_id->set_name("ESP32 Dimmer");
-  light_lightstate_id->set_object_id("esp32_dimmer");
+  light_lightstate_id->set_name("ESP32 Dimmer1");
+  light_lightstate_id->set_object_id("esp32_dimmer1");
   light_lightstate_id->set_disabled_by_default(false);
   light_lightstate_id->set_restore_mode(light::LIGHT_ALWAYS_OFF);
   light_lightstate_id->set_default_transition_length(1000);
@@ -262,6 +332,31 @@ void setup() {
   light_lightstate_id->set_gamma_correct(2.8f);
   light_lightstate_id->add_effects({});
   monochromatic_monochromaticlightoutput_id->set_output(gpio_5);
+  // light.monochromatic:
+  //   platform: monochromatic
+  //   output: gpio_23
+  //   name: ESP32 Dimmer2
+  //   disabled_by_default: false
+  //   id: light_lightstate_id_2
+  //   restore_mode: ALWAYS_OFF
+  //   gamma_correct: 2.8
+  //   default_transition_length: 1s
+  //   flash_transition_length: 0s
+  //   output_id: monochromatic_monochromaticlightoutput_id_2
+  monochromatic_monochromaticlightoutput_id_2 = new monochromatic::MonochromaticLightOutput();
+  light_lightstate_id_2 = new light::LightState(monochromatic_monochromaticlightoutput_id_2);
+  App.register_light(light_lightstate_id_2);
+  light_lightstate_id_2->set_component_source("light");
+  App.register_component(light_lightstate_id_2);
+  light_lightstate_id_2->set_name("ESP32 Dimmer2");
+  light_lightstate_id_2->set_object_id("esp32_dimmer2");
+  light_lightstate_id_2->set_disabled_by_default(false);
+  light_lightstate_id_2->set_restore_mode(light::LIGHT_ALWAYS_OFF);
+  light_lightstate_id_2->set_default_transition_length(1000);
+  light_lightstate_id_2->set_flash_transition_length(0);
+  light_lightstate_id_2->set_gamma_correct(2.8f);
+  light_lightstate_id_2->add_effects({});
+  monochromatic_monochromaticlightoutput_id_2->set_output(gpio_23);
   // socket:
   //   implementation: bsd_sockets
   // md5:

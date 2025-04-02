@@ -1,6 +1,6 @@
 esphome:
   name: prometheus
-  friendly_name: Prometheus_Inverted_Dimmer
+  friendly_name: Prometheus_2switch2dimmer
 
 esp32:
   board: esp32-c6-devkitc-1
@@ -36,9 +36,13 @@ wifi:
 captive_portal:
     
 switch:
-  platform: gpio
+- platform: gpio
   name: "Switch 1"
   pin: 4
+  
+- platform: gpio
+  name: "Switch 2"
+  pin: 15
 
 output:
   - platform: ledc
@@ -47,7 +51,19 @@ output:
     inverted: True
     frequency: "1000Hz"
 
+  - platform: ledc
+    pin: GPIO23
+    id: gpio_23
+    inverted: True
+    frequency: "1000Hz"
+
 light:
   - platform: monochromatic
     output: gpio_5
-    name: "ESP32 Dimmer"
+    name: "ESP32 Dimmer1"
+
+  - platform: monochromatic
+    output: gpio_23
+    name: "ESP32 Dimmer2"
+
+
